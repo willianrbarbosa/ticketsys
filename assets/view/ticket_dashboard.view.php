@@ -1,0 +1,256 @@
+<?php
+	session_start();
+	date_default_timezone_set('America/Sao_Paulo');
+	include('../model/class/security.class.php');
+	$security = new Security();
+?> 
+
+<div class="kt-subheader kt-grid__item" id="kt_subheader">
+	<div class="kt-container  kt-container--fluid ">
+		<div class="kt-subheader__main">
+			<h3 class="kt-subheader__title bold">Tickets</h3>
+			<span class="kt-subheader__separator kt-hidden"></span>
+			<div class="kt-subheader__breadcrumbs">
+				<i class="ace-icon fa fa-angle-double-right"></i>
+				<a href="#/ticketkanban" class="kt-subheader__breadcrumbs-link bold">&nbsp;Dashboard</a>
+			</div>
+		</div>
+		<div class="kt-subheader__toolbar">
+			<div class="kt-subheader__wrapper">
+				<div class="dropdown dropdown-inline">
+
+					<a href="" class="btn btn-sm  btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Ações Relacionadas">
+						<i class="fa fa-ellipsis-h"></i>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">
+						<!--begin::Nav-->
+						<ul class="kt-nav">
+							<li class="kt-nav__head"><strong>Ações relacionadas:</strong></li>
+							<li class="kt-nav__separator"></li>
+
+							<li class="kt-nav__item" ng-if="aUserAccess.pta_nivel < 3">
+								<a href="" data-toggle="modal" data-target="#mdNewTicket" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-plus ft-primary"></i> <span class="kt-nav__link-text">Abrir novo Ticket</span>
+								</a>
+							</li>
+
+							<li class="kt-nav__item" ng-if="aUserAccess.pta_nivel >= 3">
+								<a href="#/novoticket" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-plus ft-primary"></i> <span class="kt-nav__link-text">Abrir novo Ticket</span>
+								</a>
+							</li>
+
+							<li class="kt-nav__item">
+								<a href="#/ticketkanban" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-cubes ft-primary"></i> <span class="kt-nav__link-text">Kanban</span>
+								</a>
+							</li>
+
+							<li class="kt-nav__item" ng-if="aUserAccess.pta_nivel >= 3">
+								<a href="#/meustrabalhos" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-chevron-left ft-primary"></i> <span class="kt-nav__link-text">Voltar à listagem</span>
+								</a>
+							</li>
+
+							<li class="kt-nav__item">
+								<a href="" ng-click="NewUserFavorite('Agenda de Tickets', 'Tickets', '#'+url)" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-star ft-yellow"></i> <span class="kt-nav__link-text">Salvar como Favorito</span>
+								</a>
+							</li>
+							<li class="kt-nav__separator"></li>
+							<li class="kt-nav__head"><strong>Exportar dados:</strong></li>
+							<li class="kt-nav__separator"></li>
+							<li class="kt-nav__item">
+								<a href="" class="kt-nav__link" ng-click="exportaDados('Dashboard Tickets <br/>' + cDataTKTDe + ' até ' + cDataTKTAte, 'div-tkt-dashboard', 'PDFP')">
+									<i class="kt-nav__link-icon fa fa-file-pdf-o ft-danger"></i>
+									<span class="kt-nav__link-text">PDF</span>
+								</a>
+							</li>
+						</ul>
+						<!--end::Nav-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+	<div class="row">
+		<div class="col-xs-12 kt-portlet" >
+
+			<div class="row kt-portlet__head kt-portlet__head--sm" style="padding-top: 15px;">
+				<div class="col-xs-12">
+
+					<form name="rptForm" role="form" ng-show="aUserAccess.pta_nivel >= 3">
+					
+						<div class="row form-group">
+				        	<div class="col-sm-4">
+					        	<label>Data de</label><span class="txt-obg">*</span>
+						        <div ng-class="{ 'has-error': rptForm.iptDataTKTDe.$dirty && rptForm.iptDataTKTDe.$error.required }" >
+						        	<div class="input-group">
+						        		<span class="input-group-addon" style="font-size: 11px;"><i class="fa fa-lg fa-calendar"></i></span>
+								    	<input type="text" name="iptDataTKTDe" id="iptDataTKTDe" class="form-control my-control iptdate" ng-model="cDataTKTDe" placeholder="DD/MM/YYY" required/>
+								    </div>
+								</div>
+					        </div>
+				        	<div class="col-sm-4">
+					        	<label>Data até</label><span class="txt-obg">*</span>
+						        <div ng-class="{ 'has-error': rptForm.iptDataTKTAte.$dirty && rptForm.iptDataTKTAte.$error.required }" >
+						        	<div class="input-group">
+						        		<span class="input-group-addon" style="font-size: 11px;"><i class="fa fa-lg fa-calendar"></i></span>
+								    	<input type="text" name="iptDataTKTAte" id="iptDataTKTAte" class="form-control my-control iptdate" ng-model="cDataTKTAte" placeholder="DD/MM/YYY" ng-blur="getCliRegTribByDate(reportFilter.data_ate);" required/>
+								    </div>
+								</div>
+					        </div>
+					        <div class="col-sm-4">
+					        	<label>&nbsp;</label>
+					        	<button type="button" ng-click="rptForm.$invalid || loadGraficos(cDataTKTDe, cDataTKTAte)" ng-disabled="rptForm.$invalid || cliRegTrib <= 0" class="btn btn-sm btn-block btn-primary">Atualizar Gráficos</button>				
+						    </div>
+					    </div>
+					</form>
+
+					<div class="alert alert-warning" ng-if="!aUserAccess.pta_nivel || aUserAccess.pta_nivel < 3">
+						Usuário sem acesso a essa Rotina. Contate o Administrador do Sistema.
+						<a href="#/ticketkanban" class="btn-xs btn-link" >Voltar à listagem</a>
+					</div>
+
+			   		<div class="alert alert-warning" ng-if="!aTicketsTotais.RESP">
+						<span id="loading"><div class="loading-img"> Carregando Dashboard. Aguarde...</div></span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="div-tkt-dashboard" class="center-justify" ng-if="aTicketsTotais.RESP">
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasDia" dx-chart="optChartTotalHorasDia"></div>
+			    </div>
+		    </div>
+		</div>
+	</div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasEsforcoXReal" dx-chart="optChartTotalHorasEsforcoXReal"></div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<div class="new-page"></div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotaisResp" dx-chart="optChartTotaisResp"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasResp" dx-chart="optChartTotalHorasResp"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="new-page"></div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotaisSolic" dx-pie-chart="optChartTotaisSolic"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasSolic" dx-chart="optChartTotalHorasSolic"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="new-page"></div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotaisCateg" dx-pie-chart="optChartTotaisCateg"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasCateg" dx-chart="optChartTotalHorasCateg"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotaisSituacao" dx-pie-chart="optChartTotaisSituacao"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<div class="new-page"></div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotaisPasta" dx-chart="optChartTotaisPasta"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasPasta" dx-chart="optChartTotalHorasPasta"></div>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+	<!-- <div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+		<div class="kt-portlet">
+			<div class="kt-portlet__body">
+				<div class="demo-container div-chart">
+			        <div id="ChartTotalHorasSituacao" dx-pie-chart="optChartTotalHorasSituacao"></div>
+			    </div>
+			</div>
+		</div>
+	</div> -->

@@ -1,0 +1,65 @@
+<?php
+	session_start();
+	date_default_timezone_set('America/Sao_Paulo');
+	include('../model/class/security.class.php');
+	$security = new Security();	
+?>
+<style type="text/css">	
+	body {
+		margin: 0 !important;
+	    padding-top: 100px;
+	    /*background: rgb(2,0,36);
+		background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 40%, rgba(0,212,255,1) 100%);*/
+	    background: url('<?php echo $security->base_patch; ?>/assets/img/bg2.jpg') no-repeat center;
+	    background-size: cover;
+	    -webkit-background-size: cover;
+	    -moz-background-size: cover;
+	    -o-background-size: cover;
+	    -ms-background-size: cover;
+	}
+</style>
+
+<div class="container">
+	<div class="login-submain">
+		<div class="login-bg-content">
+			<div class="login-top">
+				<img src="<?php echo $security->base_patch.'/assets/img/logo.png'; ?>" alt="" />
+			</div>
+			<form name="loginForm">
+				<p class="login-legend">ACESSO AO SISTEMA</p>
+
+	        	<div class="row form-group" ng-show="login_error">
+					<div class="col-sm-12">
+		    			<div class="alert alert-danger">
+							<p ng-bind-html="login_error"></p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="login-input" ng-class="{ 'has-error': (loginForm.email.$dirty && loginForm.email.$error.required) || (loginForm.email.$error.email && loginForm.email.$dirty) }">
+					<input type="email" id="email" name="email" ng-model="login.email" placeholder="Digite seu e-mail" ng-required="true"  required />
+					<span class="fa fa-envelope" ng-class="{'ft-success': !loginForm.email.$error.required && !loginForm.email.$error.minlength}"></span>
+					<i class="fa fa-check ft-success ok-icon" ng-if="!loginForm.email.$error.required && !loginForm.email.$error.minlength"></i>
+				</div>
+				<div class="login-input" ng-class="{ 'has-error': (loginForm.passwd.$dirty && loginForm.passwd.$error.required) || loginForm.passwd.$error.minlength }">
+					<input type="password" id="passwd" name="passwd" ng-model="login.passwd" placeholder="Digite sua senha" ng-minlength="6" ng-required="true" required />
+					<span class="fa fa-unlock" ng-class="{'ft-success': !loginForm.passwd.$error.required && !loginForm.passwd.$error.minlength}"></span>
+					<i class="fa fa-check ft-success ok-icon" ng-if="!loginForm.passwd.$error.required && !loginForm.passwd.$error.minlength"></i>
+				</div>
+
+	        	<div class="left-justify">
+					<label class="control control--checkbox">Continuar conectado
+						<input type="checkbox" value="true" id="rememberme" name="rememberme" ng-model="login.rememberme"/>
+						<div class="control__indicator"></div>
+					</label>
+				</div>
+				<hr/>
+
+				<button type="submit" class="btn btn-block btn-md btn-primary bold btn-login" ng-click="loginForm.$invalid || validLogin(login)">ENTRAR</button>
+			</form>
+			<a href="#/recuperasenha" class="btn-sm btn-link rec-senha">Esqueci minha senha.</a>
+		</div>
+	</div>
+	<!-- //content -->
+
+</div>

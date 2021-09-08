@@ -1,0 +1,214 @@
+<!-- begin:: Aside Menu -->
+<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper" style="height: 90% !important; max-height: 90% !important;">
+    <div id="kt_aside_menu" class="kt-aside-menu kt-scroll ps ps--active-y" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500" style="height: 100% !important; overflow: hidden; margin-top: 0 !important;">
+        <ul class="kt-menu__nav " style="padding-top: 0 !important;">
+
+            <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('ticketdashboard') != -1 }" aria-haspopup="true" ng-if="AccessRotNivelFilter('ticket', 3)">
+                <a href="#/ticketdashboard" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-area-chart"></i></span>
+                    <span class="kt-menu__link-text">Dashboard</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('ticketagenda') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('ticketkanban')">
+                <a href="#/ticketagenda" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-calendar"></i></span>
+                    <span class="kt-menu__link-text">Agenda</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('ticketkanban') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('ticketkanban')">
+                <a href="#/ticketkanban" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-th-large"></i></span>
+                    <span class="kt-menu__link-text">Kanban</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('meustrabalhos') != -1 }" aria-haspopup="true" ng-if="AccessRotNivelFilter('ticket', 3)">
+                <a href="#/meustrabalhos" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-briefcase"></i></span>
+                    <span class="kt-menu__link-text">Meus Trabalhos</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+            <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('triagemticket') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('triagemTicket')">
+                <a href="#/triagemticket" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-address-card"></i></span>
+                    <span class="kt-menu__link-text">Triagem</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+            </li>
+
+            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover" 
+                ng-if="AccessRotFilter('categoria_ticket') || AccessRotFilter('grupo_trabalho') || AccessRotFilter('pasta_trabalho') || AccessRotFilter('origem_ticket') || 
+                        AccessRotFilter('prioridade_ticket' || AccessRotFilter('situacao_ticket') || AccessRotFilter('tipo_atividade') || AccessRotFilter('ticket'))">
+                <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-wpforms"></i></span>
+                    <span class="kt-menu__link-text">Cadastros</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="kt-menu__submenu">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/categoriaticket' }" aria-haspopup="true" ng-if="AccessRotFilter('categoria_ticket')">
+                            <a href="#/categoriaticket" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Categorias de Ticket</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/grupotrabalho' }" aria-haspopup="true" ng-if="AccessRotFilter('grupo_trabalho')">
+                            <a href="#/grupotrabalho" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Grupos de Trabalho</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/origemticket' }" aria-haspopup="true" ng-if="AccessRotFilter('origem_ticket')">
+                            <a href="#/origemticket" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Origens de Ticket</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/pastatrabalho' }" aria-haspopup="true" ng-if="AccessRotFilter('pasta_trabalho')">
+                            <a href="#/pastatrabalho" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Pastas de Trabalho</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/prioridadeticket' }" aria-haspopup="true" ng-if="AccessRotFilter('prioridade_ticket')">
+                            <a href="#/prioridadeticket" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Prioridades de Ticket</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/situacaoticket' }" aria-haspopup="true" ng-if="AccessRotFilter('situacao_ticket')">
+                            <a href="#/situacaoticket" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Situações de Ticket</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/tipoatividade' }" aria-haspopup="true" ng-if="AccessRotFilter('tipo_atividade')">
+                            <a href="#/tipoatividade" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Tipos de Atividade</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/ticket' }" aria-haspopup="true" ng-if="AccessRotFilter('ticket')">
+                            <a href="#/ticket" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Tickets</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            
+            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover" 
+                ng-if="AccessRotFilter('ticket_rel_gerencial') || AccessRotFilter('ticket_rel_desemp')">
+                <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-file"></i></span>
+                    <span class="kt-menu__link-text">Relatórios</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="kt-menu__submenu">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/relatoriogerencial' }" aria-haspopup="true" ng-if="AccessRotFilter('ticket_rel_gerencial')">
+                            <a href="#/relatoriogerencial" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Rel. Gerencial</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url == '/relatoriodesempenho' }" aria-haspopup="true" ng-if="AccessRotFilter('ticket_rel_desemp')">
+                            <a href="#/relatoriodesempenho" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Rel. Desempenho Equipe</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            
+            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                    <span class="kt-menu__link-icon"><i class="menu-icon fa fa-cogs"></i></span>
+                    <span class="kt-menu__link-text">Configurações</span>
+                    <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                </a>
+                <div class="kt-menu__submenu">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('users') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('users')">
+                            <a href="#/users" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Usuários</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('accessprofiles') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('accessprofiles')">
+                            <a href="#/accessprofiles" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Perfis de Acesso</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('myaccount') != -1 }" aria-haspopup="true">
+                            <a href="#/myaccount/{{aUserData.user_token}}" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Meus Dados</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('registrationlog') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('registrationlog')">
+                            <a href="#/registrationlog" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">LOG de Cadastros</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('usersaccesslog') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('usersaccesslog')">
+                            <a href="#/usersaccesslog" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">LOG de Acesso dos usuários</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('errorslog') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('errorslog')">
+                            <a href="#/errorslog" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">LOG de Erros do Sistema</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('parameter') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('parameters')">
+                            <a href="#/parameters" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Parâmetros</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="kt-menu__item"  ng-class="{ 'kt-menu__item--active': url.indexOf('indicator') != -1 }" aria-haspopup="true" ng-if="AccessRotFilter('indicators')">
+                            <a href="#/indicators" class="kt-menu__link kt-menu__toggle">
+                                <i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i>
+                                <span class="kt-menu__link-text">Indicadores</span>
+                                <i class="kt-menu__ver-arrow la la-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+<!-- end:: Aside Menu -->   
+</div>  

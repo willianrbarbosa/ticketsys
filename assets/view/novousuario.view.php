@@ -1,0 +1,146 @@
+<?php
+	session_start();
+	date_default_timezone_set('America/Sao_Paulo');
+	include('../model/class/security.class.php');
+	$security = new Security();	
+?>
+
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+	<div class="kt-container  kt-container--fluid ">
+		<div class="kt-subheader__main">
+			<h3 class="kt-subheader__title bold">Cadastros</h3>
+			<span class="kt-subheader__separator kt-hidden"></span>
+			<div class="kt-subheader__breadcrumbs">
+				<i class="ace-icon fa fa-angle-double-right"></i>
+				<a href="#/users" class="kt-subheader__breadcrumbs-link bold">&nbsp;Usuários</a>
+			</div>
+			<span class="kt-subheader__separator kt-hidden"></span>
+			<div class="kt-subheader__breadcrumbs">
+				<i class="ace-icon fa fa-angle-double-right"></i>
+				<span class="kt-subheader__breadcrumbs">&nbsp;Novo</span>
+			</div>
+		</div>
+		<div class="kt-subheader__toolbar">
+			<div class="kt-subheader__wrapper">
+				<div class="dropdown dropdown-inline">
+					
+					<a href="" ng-if="aUserAccess.pta_nivel >= 1" class="btn btn-xs btn-primary btn-salvar" ng-click="newForm.$invalid || newUser(usuario, true)" ng-if="aUserAccess.pta_nivel >= 1" ng-disabled="newForm.$invalid">
+						Salvar
+					</a>
+					<a href="" ng-if="aUserAccess.pta_nivel >= 1" class="btn btn-xs btn-success btn-salvar" ng-click="newForm.$invalid || newUser(usuario, false)" ng-if="aUserAccess.pta_nivel >= 1" ng-disabled="newForm.$invalid">
+						Salvar e Cad. Novo
+					</a>
+
+					<a href="" class="btn btn-sm  btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Ações Relacionadas">
+						<i class="fa fa-ellipsis-h"></i>
+					</a>
+
+					<div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">
+						<!--begin::Nav-->
+						<ul class="kt-nav">
+							<li class="kt-nav__head"><strong>Ações relacionadas:</strong></li>
+							<li class="kt-nav__separator"></li>
+							<li class="kt-nav__item">
+								<a href="#/users" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-chevron-left ft-primary"></i> <span class="kt-nav__link-text">Voltar à listagem</span>
+								</a>
+							</li>
+							<li class="kt-nav__item">
+								<a href="" ng-click="NewUserFavorite('Novo Usuário', '2. Cadastros', '#'+url)" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-star ft-yellow"></i> <span class="kt-nav__link-text">Salvar como Favorito</span>
+								</a>
+							</li>
+							<li class="kt-nav__item">
+								<a href="" ng-click="" class="kt-nav__link">
+									<i class="kt-nav__link-icon fa fa-md fa-question-circle"></i> <span class="kt-nav__link-text">Ajuda</span>
+								</a>
+							</li>
+						</ul>
+						<!--end::Nav-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+	<div class="row">
+		<div class="col-xs-12 kt-portlet" >	
+
+			<div class="kt-portlet__body" >
+		
+				<div class="alert alert-warning" ng-if="!aUserAccess.pta_nivel || aUserAccess.pta_nivel < 1">
+					Usuário sem acesso a essa Rotina. Contate o Administrador do Sistema.
+					<a href="#/users" class="btn-xs btn-link" >Voltar à listagem</a>
+				</div>
+
+				<form name="newForm" role="form" ng-show="aUserAccess.pta_nivel >= 1">
+					<br>	
+
+					<div class="row row-title-fields">
+						<button type="button" class="btn btn-xs btn-link" data-toggle="collapse" data-target="#principal"><i class="fa fa-caret-down"></i> Informações Gerais<span class="nd-text">(obrigatório)</span></button>
+					</div>
+					<div id="principal" class="collapse in">
+						<div class="form-group row">
+				        	<div class="col-sm-2">
+					        	<label>Registro</label>
+					            <input type="text" name="user_id" id="user_id" ng-maxlength="11" class="form-control my-control" ng-model="usuario.user_id" readonly />
+					        </div>
+					        <div class="col-sm-10">
+						        <div ng-class="{ 'has-error': newForm.user_nome.$dirty && (newForm.user_nome.$error.required || newForm.user_nome.$error.maxlength) }" >
+						        	<label>Nome</label><span class="txt-obg">*</span>
+					        		<input type="text" name="user_nome" id="user_nome" ng-maxlength="120" maxlength="120" class="form-control my-control" placeholder="Nome completo" ng-model="usuario.user_nome" required />
+						        </div>			       			        
+					        </div>
+					    </div>
+
+						<div class="form-group row">
+					        <div class="col-sm-6">
+						        <div ng-class="{ 'has-error': newForm.user_email.$dirty && (newForm.user_email.$error.required || newForm.user_email.$error.maxlength || newForm.user_email.$error.email) }" >
+						        	<label>E-mail</label><span class="txt-obg">*</span>
+					        		<input type="email" name="user_email" id="user_email" maxlength="80" ng-maxlength="80" class="form-control my-control" placeholder="E-mail" ng-blur="getUserEmail(usuario)" ng-model="usuario.user_email" required />
+						        </div>		     
+					        </div>
+					        <div class="col-sm-3">
+						        <div ng-class="{ 'has-error': newForm.user_passwd.$dirty && newForm.user_passwd.$error.required }" >
+						        	<label>Senha de acesso</label><span class="txt-obg">*</span>
+						            <input type="password" name="user_passwd" id="user_passwd" maxlength="40" class="form-control my-control" ng-model="usuario.user_passwd" placeholder="Senha..." required />
+						        </div>
+					        </div>
+					        <div class="col-sm-3">
+						        <div ng-class="{ 'has-error': newForm.user_tipo.$dirty && newForm.user_tipo.$error.required }" >
+					        		<label>Tipo</label><span class="txt-obg">*</span>
+									<selectize name="user_tipo" id="user_tipo" config="cfgType" options="aTypes" ng-model="usuario.user_tipo" required></selectize>
+						        </div>
+					        </div>
+					    </div>
+
+						<div class="form-group row">
+					        <div class="col-sm-4">
+				        		<label>Perfil de Acesso</label><span class="txt-obg">*</span>
+								<selectize name="user_pfa_id" id="user_pfa_id" config="cfgPerfisAcesso" options="aPerfisAcesso" ng-model="usuario.user_pfa_id" required ng-disabled="usuario.user_tipo >= 3"></selectize>		        
+					        </div>
+							<div class="col-sm-4">
+								<label>Pasta de Trabalho Padrão</label>
+								<selectize id="user_pst_id" name="user_pst_id" config="cfgPastaTrabalho" options="aPastaTrabalho" ng-model="usuario.user_pst_id"></selectize>
+							</div>
+					        <div class="col-sm-4" ng-if="usuario.user_tipo == 1">
+					        	<label>&nbsp;</label>
+								<label class="control control--checkbox">Usuário Resp. Ticket?
+									<input type="checkbox" value="None" id="user_resp_ticket" name="user_resp_ticket" ng-model="usuario.user_resp_ticket" />
+									<div class="control__indicator"></div>
+								</label>
+					        </div>
+					    </div>
+					</div>
+					<hr>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<br>

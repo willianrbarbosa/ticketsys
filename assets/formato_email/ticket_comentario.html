@@ -1,0 +1,56 @@
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<div style="font-family:Calibri;">
+		Olá <b>$solicitante_nome</b>, tudo bem?<br/>
+
+		<h3>Seu ticket recebeu um novo comentário.</h3>
+
+		<table style="width: 100%;">
+			<thead class="thead">
+				<tr>
+					<th style="text-align: left">Nº.</a></th>
+					<th style="text-align: left">Título</a></th>
+					<th style="text-align: left">Data Abertura</a></th>
+					<th style="text-align: left">Situação</a></th>
+					<th style="text-align: left">Responsável</a></th>
+				</tr>
+			</thead>	
+			<tbody>	
+				<tr>
+					<td>#$tkt_id</a></td>
+					<td>$tkt_titulo</td>
+					<td>$tkt_abertura_data</td>
+					<td>$tkt_situacao</td>
+					<td>$tkt_responsavel</td>					
+				</tr>
+			</tbody> 
+		</table>
+		<br/>
+		<b>Descrição: </b><br/>
+		$tkt_descricao
+
+		<br/><br/>
+		<b>Comentário feito por $tkt_comentario_user em  $tkt_comentario_data: </b><br/>
+		$tkt_comentario
+		<br/><br/>
+
+		<label style="text-align:left; display: $display_ticket;">
+			Você pode acompanhar seus tickets clicando <a href="https://app.cadastracerto.com.br/#/meustickets">aqui</a>.
+		</label>
+		<label style="text-align:left; display: $display_auditor;">
+			Você pode acompanhar seus tickets clicando <a href="https://app.auditornfe.com.br/#/meuschamados">aqui</a>.
+		</label>
+
+		<br/><br/>
+		Este e-mail automático foi enviado em <b>$data_envio</b> às <b>$hora_envio</b>. Não responda esse e-mail.<br/><br/>
+		<label style="text-align:left; display: $display_ticket;"><b>© Equipe Ticket SYS.</b></label>
+		<label style="text-align:left; display: $display_auditor;"><b>© Equipe Auditor NFe.</b></label>
+		<br/>
+	</div>
+	<div style="text-align:left; display: $display_ticket;">
+        <a style="text-decoration:none;" href="https://app.cadastracerto.com.br"><img src="https://app.cadastracerto.com.br/assets/img/ticket_logo.png"></a>
+    </div>	
+	<div style="text-align:left; display: $display_auditor;">
+        <a style="text-decoration:none;" href="https://app.auditornfe.com.br"><img src="https://app.auditornfe.com.br/assets/img/logo-auditor-nfe-rpt.jpg"></a>
+    </div>	
+</html>
