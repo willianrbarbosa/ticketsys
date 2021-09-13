@@ -9,12 +9,15 @@
 	include('class/TicketHistoricoDAO.class.php');
 	include('class/TicketHistorico.class.php');
 	include('class/TicketUsuariosDAO.class.php');
+	include('class/notificacaoDAO.class.php');
+	include('class/notificacao.class.php');
 	include('class/perfilAcessoRotinaDAO.class.php');
 	include('class/logEdicao.class.php');
 	include('class/logEdicaoDAO.class.php');
 
-	$security 		= new Security();	
+	$security 				= new Security();	
 	$perfilAcessoRotinaDAO 	= new perfilAcessoRotinaDAO();
+	$notificacaoDAO 		= new notificacaoDAO();	
 
 	if ( $security->Exist() ) {
 		$aUserRotina = $perfilAcessoRotinaDAO->buscaByPerfilRotina('ticket_comentarios', $security->getUser_pfa_id());
@@ -77,6 +80,7 @@
 					$cAssunto	= 'Ticket #'.$aTicket['tkt_id'].' - Novo comentario';
 
 					if ( !Empty($cCorpoEmail) ) {
+						$aNotificaTkt	= array();
 						$aEmailsDest	= null;
 						$aNomesDest		= null;
 						$aEmailsCopia	= null;
@@ -89,6 +93,9 @@
 									$aEmailsCopia	.= $aTicketObserv[$o]['user_email'].';';
 									$aNomesCopia	.= $aTicketObserv[$o]['user_nome'].';';
 								}
+								if ( $aTicketObserv[$o]['tku_notif_sistema'] == 'S' ) {
+									array_push($aNotificaTkt, $aTicketObserv[$o]['tku_user_id']);
+								}
 							}
 						}
 
@@ -96,9 +103,15 @@
 							$aEmailsDest	.= $aTicket['solic_user_email'].';';
 							$aNomesDest		.= $aTicket['solic_user_nome'].';';
 						}
+						if ( $aTicket['solic_tku_notif_sistema'] == 'S' ) {
+							array_push($aNotificaTkt, $aTicket['solic_user_id']);
+						}
 						if ( $aTicket['resp_tku_notif_email'] == 'S' ) {
 							$aEmailsDest	.= $aTicket['resp_user_email'].';';
 							$aNomesDest		.= $aTicket['resp_user_nome'].';';
+						}
+						if ( $aTicket['resp_tku_notif_sistema'] == 'S' ) {
+							array_push($aNotificaTkt, $aTicket['resp_user_id']);
 						}
 
 						$cCorpoEmail = str_replace('$solicitante_nome',		$aTicket['solic_user_nome'], 	$cCorpoEmail);
@@ -139,6 +152,24 @@
 							$EmailHelper->EmailTicket($aEmailsCopia,$aNomesCopia,null,null,$cCorpoEmail,$cAssunto,null,null,$lAuditor,$cMsgRetEmail);
 						}
 						$TicketComentariosDAO->cReturnMsg  .= '<br/>'.$cMsgRetEmail;
+
+						// - Aqui vai gerar as notificações do sistema
+						if ( (!Empty($aNotificaTkt)) ) {
+							for ($u=0; $u < count($aNotificaTkt); $u++) {
+
+								$ntf_id 			= 0;
+								$ntf_dest_user_id	= $aNotificaTkt[$u];
+								$ntf_data_hora		= Date('Y-m-d H:i:s');
+								$ntf_tipo_alerta	= 'primary';
+								$ntf_notificacao	= $cAssunto;
+								$ntf_url			= 'detalheticket/'.$aTicket['tkt_id'];
+								$ntf_lida			= 'N';
+
+								$Notificacao 		= new Notificacao($ntf_id,$ntf_dest_user_id,$ntf_data_hora,$ntf_tipo_alerta,$ntf_notificacao,$ntf_url,$ntf_lida);
+
+								$notificacaoDAO->Insere($Notificacao);
+							}
+						}
 					}
 				} else {
 			 		$lOk = false;
