@@ -1,18 +1,20 @@
 <?php
+	namespace TicketSys;
 	ob_start();
 	session_start();
-
-	ini_set('default_charset','UTF-8');
-	include('assets/model/class/security.class.php');
-	$security = new Security();
+	ini_set('default_charset','UTF-8');	
 	define( 'WP_MAX_MEMORY_LIMIT' , '4096M' );
+		
+	require_once "vendor/autoload.php";
+
+	$security = new Model\Classes\Security();
 ?>  
 <html ng-app="ticket_sys" ng-init="tab=1">
 <head>
 	<meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="<?php echo $security->base_patch; ?>/assets/img/favicon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="<?php echo $security->base_patch; ?>/assets/img/favicon.png" type="image/x-icon"/>
+	<link rel="icon" href="<?php echo $security->base_patch; ?>/src/img/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="<?php echo $security->base_patch; ?>/src/img/favicon.png" type="image/x-icon"/>
 	<title>Ticket SYS</title>
 
     <meta name="author" content="Willian Barbosa">
@@ -23,10 +25,10 @@
 </head>
 <body app="ticket_sys" ng-cloak ng-controller="TicketSysCtrl" class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--enabled kt-subheader--fixed kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-aside--minimize">
 
-	<?php 	include('assets/view/header.html');   ?>
+	<?php 	include('src/Front/view/header.php');   ?>
 	<div growl></div>
 	
-	<form action="<?php echo $security->base_patch; ?>/assets/model/exportar_dados.php" method="post" target="_blank" id="formExportaDados">
+	<form action="<?php echo $security->base_patch; ?>/src/model/exportar_dados.php" method="post" target="_blank" id="formExportaDados">
 		<input type="hidden" id="nome_tabela" name="nome_tabela" />
 		<input type="hidden" id="tabela_html" name="tabela_html" />
 		<input type="hidden" id="exporta_tipo" name="exporta_tipo" />
@@ -112,7 +114,7 @@
 
 					<div class="row form-group">
 						<div class="col-sm-4 col-sm-offset-4">
-							<a href="assets/model/logout.php" class="btn btn-lg btn-block btn-danger bg-danger-dark wow fadeInDown animated"><i class="fa fa-sign-in"></i> Acessar novamente</a>
+							<a href="src/model/logout.php" class="btn btn-lg btn-block btn-danger bg-danger-dark wow fadeInDown animated"><i class="fa fa-sign-in"></i> Acessar novamente</a>
 						</div>
 					</div>
 				</div>
