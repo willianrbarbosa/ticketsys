@@ -1,5 +1,8 @@
 <?php
 	namespace TicketSys\Model\Classes;
+
+	use TicketSys\Model\Classes\SMTP;
+  use Exception;
 	
 /*~ class.phpmailer.php
 .---------------------------------------------------------------------------.
@@ -800,7 +803,7 @@ class PHPMailer {
    * @return bool
    */
   protected function SmtpSend($header, $body) {
-    require_once $this->PluginDir . 'class.smtp.php';
+    //require_once $this->PluginDir . 'class.smtp.php';
     $bad_rcpt = array();
 
     if(!$this->SmtpConnect()) {
@@ -1833,7 +1836,7 @@ class PHPMailer {
     $eol = "\r\n";
     $escape = '=';
     $output = '';
-    while( list(, $line) = each($lines) ) {
+    while( list(, $line) = @each($lines) ) {
       $linlen = strlen($line);
       $newline = '';
       for($i = 0; $i < $linlen; $i++) {
