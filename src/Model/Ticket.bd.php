@@ -1,29 +1,31 @@
 <?php
+	namespace TicketSys\Model;
+	require_once "../../vendor/autoload.php";
 	session_start();
-
-	include('class/security.class.php');
-	include('class/EmailHelper.class.php');
-	include('class/TicketDAO.class.php');
-	include('class/Ticket.class.php');
-	include('class/TicketApontamentosDAO.class.php');
-	include('class/TicketArquivosDAO.class.php');
-	include('class/TicketArquivos.class.php');
-	include('class/TicketUsuariosDAO.class.php');
-	include('class/TicketUsuarios.class.php');
-	include('class/TicketHistoricoDAO.class.php');
-	include('class/TicketHistorico.class.php');
-	include('class/PastaTrabalhoDAO.class.php');
-	include('class/TipoAtividadeDAO.class.php');
-	include('class/SituacaoTicketDAO.class.php');
-	include('class/CategoriaTicketDAO.class.php');
-	include('class/PrioridadeTicketDAO.class.php');
-	include('class/usuarioDAO.class.php');
-	include('class/notificacaoDAO.class.php');
-	include('class/notificacao.class.php');
-	include('class/perfilAcessoRotinaDAO.class.php');
-	include('class/logEdicao.class.php');
-	include('class/logEdicaoDAO.class.php');
-	include('class/parametroDAO.class.php');
+	
+	use TicketSys\Model\Classes\Security;
+	use TicketSys\Model\Classes\EmailHelper;
+	use TicketSys\Model\Classes\TicketDAO;
+	use TicketSys\Model\Classes\Ticket;
+	use TicketSys\Model\Classes\TicketApontamentosDAO;
+	use TicketSys\Model\Classes\TicketArquivosDAO;
+	use TicketSys\Model\Classes\TicketArquivos;
+	use TicketSys\Model\Classes\TicketUsuariosDAO;
+	use TicketSys\Model\Classes\TicketUsuarios;
+	use TicketSys\Model\Classes\TicketHistoricoDAO;
+	use TicketSys\Model\Classes\TicketHistorico;
+	use TicketSys\Model\Classes\PastaTrabalhoDAO;
+	use TicketSys\Model\Classes\TipoAtividadeDAO;
+	use TicketSys\Model\Classes\SituacaoTicketDAO;
+	use TicketSys\Model\Classes\CategoriaTicketDAO;
+	use TicketSys\Model\Classes\PrioridadeTicketDAO;
+	use TicketSys\Model\Classes\UsuarioDAO;
+	use TicketSys\Model\Classes\NotificacaoDAO;
+	use TicketSys\Model\Classes\Notificacao;
+	use TicketSys\Model\Classes\ParametroDAO;
+	use TicketSys\Model\Classes\LogEdicaoDAO;
+	use TicketSys\Model\Classes\LogEdicao;
+	use TicketSys\Model\Classes\PerfilAcessoRotinaDAO;
 
 	$security				= new Security();
 	$perfilAcessoRotinaDAO 	= new PerfilAcessoRotinaDAO();
@@ -52,8 +54,8 @@
 			$SituacaoTicketDAO 		= new SituacaoTicketDAO();
 			$CategoriaTicketDAO 	= new CategoriaTicketDAO();
 			$PrioridadeTicketDAO 	= new PrioridadeTicketDAO();
-			$usuarioDAO 			= new usuarioDAO();
-			$parametroDAO 			= new parametroDAO();
+			$usuarioDAO 			= new UsuarioDAO();
+			$parametroDAO 			= new ParametroDAO();
 
 			$lOk  = false;
 			$aTicketAnt				= array();
