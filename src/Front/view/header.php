@@ -282,7 +282,7 @@
 <div id="kt_quick_panel" class="kt-quick-panel" style="opacity: 1;" ng-show="userLogged">
   <a href="https://keenthemes.com/metronic/preview/demo1/crud/forms/controls/base.html#" class="kt-quick-panel__close" id="kt_quick_panel_close_btn"><i class="flaticon2-delete"></i></a>
 
-  <div class="kt-quick-panel__nav bg-primary ft-white" kt-hidden-height="66" style="">
+  <div class="kt-quick-panel__nav bg-primary ft-white" kt-hidden-height="66">
     <div class="row form-group">
       <div class="col-sm-12">
         <h4 class="ft-white"><strong><i class="fa fa-lg fa-bell ft-white"></i> Notificações</strong></h4>
