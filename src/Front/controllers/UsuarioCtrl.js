@@ -1,6 +1,6 @@
 var app = angular.module("ticket_sys");
 app.controller("UsuarioCtrl", function($scope, PerfilAcessoRotinaAPIService, UsuarioAPIService, PerfilAcessoAPIService, PastaTrabalhoAPIService, $location, $filter, $routeParams, growl, config){	
-	$scope.aTypes = [{type_id: "1", type_descr: "Administrador"},{type_id: "2", type_descr: "Funcionário"},{type_id: "3", type_descr: "Cliente"}];		
+	$scope.aTypes = [{type_id: "1", type_descr: "Administrador"},{type_id: "2", type_descr: "Desenvolvedor"},{type_id: "3", type_descr: "Solicitante"}];
 	$scope.aUsuarios = [];
 	$scope.aAcessos = [];
 	$scope.aUserAccess = {};

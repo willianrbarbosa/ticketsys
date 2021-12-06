@@ -1,5 +1,5 @@
 angular.module("ticket_sys").controller("EdtUsuarioCtrl", function($scope, PerfilAcessoRotinaAPIService,PerfilAcessoAPIService, UsuarioAPIService, PastaTrabalhoAPIService, $location, $filter, $routeParams, growl, config){
-	$scope.aTypes = [{type_id: "1", type_descr: "Administrador"},{type_id: "2", type_descr: "Funcionário"},{type_id: "3", type_descr: "Cliente"}];
+	$scope.aTypes = [{type_id: "1", type_descr: "Administrador"},{type_id: "2", type_descr: "Desenvolvedor"},{type_id: "3", type_descr: "Solicitante"}];
 	$scope.aUserData = {};
 	$scope.eUsuario = [];
 	$scope.aUserAccess = {};

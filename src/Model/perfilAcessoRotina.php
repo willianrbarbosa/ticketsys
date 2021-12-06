@@ -3,7 +3,7 @@
 	require_once "../../vendor/autoload.php";
 	session_start();
 	
-	use TicketSys\Model\Classes\perfilAcessoDAO;
+	use TicketSys\Model\Classes\PerfilAcessoDAO;
 	use TicketSys\Model\Classes\PerfilAcessoRotinaDAO;	
 	include('session_vars.php');
 

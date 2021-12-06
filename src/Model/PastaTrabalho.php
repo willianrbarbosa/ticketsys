@@ -7,7 +7,6 @@
 	use TicketSys\Model\Classes\PerfilAcessoRotinaDAO;	
 	include('session_vars.php');
 
-	$security = new Security();
 	$PastaTrabalhoDAO = new PastaTrabalhoDAO();
 	$perfilAcessoRotinaDAO 	= new PerfilAcessoRotinaDAO();
 

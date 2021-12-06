@@ -2,7 +2,7 @@
 	namespace TicketSys\Model\Classes;
 	use PDO, PDOException;
 	
-	class graficosDAO extends Security {
+	class GraficosDAO extends Security {
 		 
 		public $conex = null;
 		public $sql = '';
@@ -11,7 +11,7 @@
 
 		public function __construct(){
 			date_default_timezone_set('America/Sao_Paulo');
-			$this->conex = Security::getConnection();
+			$this->conex = $this->getConnection();
 		}
 
 		public function getTotaisTickets($cDataDe, $cDataAte){

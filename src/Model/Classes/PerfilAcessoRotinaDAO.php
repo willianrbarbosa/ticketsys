@@ -11,7 +11,7 @@
 
 		public function __construct(){
 			date_default_timezone_set('America/Sao_Paulo');
-			$this->conex = Security::getConnection();
+			$this->conex = $this->getConnection();
 		}
 
 		public function Insere($oPerfilAcessoRotina){

@@ -114,7 +114,7 @@
 
 					<div class="row form-group">
 						<div class="col-sm-4 col-sm-offset-4">
-							<a href="src/model/logout.php" class="btn btn-lg btn-block btn-danger bg-danger-dark wow fadeInDown animated"><i class="fa fa-sign-in"></i> Acessar novamente</a>
+							<a href="src/Model/Logout.php" class="btn btn-lg btn-block btn-danger bg-danger-dark wow fadeInDown animated"><i class="fa fa-sign-in"></i> Acessar novamente</a>
 						</div>
 					</div>
 				</div>
