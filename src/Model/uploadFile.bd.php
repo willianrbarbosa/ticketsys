@@ -23,7 +23,7 @@
     $numeros 	= "/^[0-9]+$/";
     $patterntot	= "/^[a-z0-9]+$/";
 	
-	$security 		= new security();
+	$security 		= new Security();
 
 	if ( $security->Exist() ) {
 	    try {
@@ -52,7 +52,7 @@
 				    	$lFileExt = false;
 				    } else {
 				        // Concatena a pasta com o nome
-				        $fileUpload_new = strtolower($security->sanitizeString('../../assets/importacoes/'.$cPastaBase.$security->getUser_id().'_'.Date('Y-m-d-H-m').'_'.$oArquivo['name']));
+				        $fileUpload_new = strtolower($security->sanitizeString('../../src/importacoes/'.$cPastaBase.$security->getUser_id().'_'.Date('Y-m-d-H-m').'_'.$oArquivo['name']));
 				        $lFileExt = true;
 				    }
 
