@@ -5,9 +5,6 @@
 	
 	use TicketSys\Model\Classes\Security;
 	use Exception;
-
-	session_start();
-	include('class/security.class.php');
 	
 	setlocale( LC_ALL, 'pt_BR', 'pt_BR.iso-8859-1', 'pt_BR.utf-8', 'portuguese' );
 	date_default_timezone_set( 'America/Sao_Paulo' );
@@ -18,7 +15,7 @@
 
     $cExtensoesBloqueadas = '.zip;.rar;.7z;';
     $cExtensoesBloqueadas .= '.exe;.msi;.bat;.ini;.msc;.com;.cmd;.hta;.scr;.pif;.reg;.bin;.cab;.cdi;.cfg;.lnk;.rtf;.tmp;';
-    $cExtensoesBloqueadas .= '.ppt;.pptx;.mfd;.mdb;';
+    $cExtensoesBloqueadas .= '.mfd;.mdb;';
     $cExtensoesBloqueadas .= '.bak;.bkp;.log;.sql;.dbf;.gdb;.fdb;.php;.htm;.html;.js;.vbs;.wsf;.cpl;.jar;.js;.ws;.thmx;.css;';
     $cExtensoesBloqueadas .= '.avi;.mp4;.mp3;.mid;.wmv;.wma;.mpg;.wav;';
 
@@ -70,7 +67,7 @@
 				            $lOk		= false;
 				        }
 				    } else {
-					    $nRetMsg 	= 'É permitido apenas envio de arquivos do tipo "*.jpg;*.jpeg;*.gif;*.png;*.pdf;*.txt;*xls;*xlsx;*.csv;*.doc;*.docx;".';
+					    $nRetMsg 	= 'É permitido apenas envio de arquivos do tipo "*.jpg;*.jpeg;*.gif;*.png;*.pdf;*.txt;*xls;*xlsx;*.csv;*.doc;*.docx;*.ppt;*.pptx;".';
 				        $lOk		= false;
 				    }
 				}
