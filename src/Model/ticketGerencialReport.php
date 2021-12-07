@@ -844,11 +844,11 @@
 			$cReportPDF	= $cCabecalho.$cReportPDF.$cRptLegenda;
 
 			if ( count($aTickets) > 0 ) {
-				$cArqHTML = $_SERVER['DOCUMENT_ROOT'].$security->base_patch.'/assets/relatorios/ticketGerencialReport_'.Date('Y-m-d_H-s-i').'_'.SEC_USER_NOME.'.html';
+				$cArqHTML = $_SERVER['DOCUMENT_ROOT'].$security->base_patch.'/src/relatorios/ticketGerencialReport_'.Date('Y-m-d_H-s-i').'_'.SEC_USER_NOME.'.html';
 				$fp = fopen($cArqHTML, 'w');
 				fwrite($fp, $cReportPDF);
 				fclose($fp);
-				$cArqHTML = $security->base_patch.'/assets/relatorios/ticketGerencialReport_'.Date('Y-m-d_H-s-i').'_'.SEC_USER_NOME.'.html';
+				$cArqHTML = $security->base_patch.'/src/relatorios/ticketGerencialReport_'.Date('Y-m-d_H-s-i').'_'.SEC_USER_NOME.'.html';
 				// array_push($aReport, array("HTMLFILE"=>$cArqHTML));
 				$aHTMLRet['HTMLFILE']	= $cArqHTML;
 			}
