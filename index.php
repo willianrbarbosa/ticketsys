@@ -28,7 +28,7 @@
 	<?php 	include('src/Front/view/header.php');   ?>
 	<div growl></div>
 	
-	<form action="<?php echo $security->base_patch; ?>/src/model/exportar_dados.php" method="post" target="_blank" id="formExportaDados">
+	<form action="<?php echo $security->base_patch; ?>/src/Model/exportar_dados.php" method="post" target="_blank" id="formExportaDados">
 		<input type="hidden" id="nome_tabela" name="nome_tabela" />
 		<input type="hidden" id="tabela_html" name="tabela_html" />
 		<input type="hidden" id="exporta_tipo" name="exporta_tipo" />
