@@ -2,15 +2,17 @@
 	namespace TicketSys\Model;
 	require_once "../../vendor/autoload.php";
 	session_start();
-	
+		
 	use TicketSys\Model\Classes\Security;
 	use TicketSys\Model\Classes\PerfilAcessoRotinaDAO;
 	use TicketSys\Model\Classes\PerfilAcessoRotina;
 	use TicketSys\Model\Classes\LogEdicaoDAO;
 	use TicketSys\Model\Classes\LogEdicao;
 
-	$security = new Security();
-	$logEdicaoDAO 	= new LogEdicaoDAO();
+	$security 				= new Security();
+	$logEdicaoDAO 			= new LogEdicaoDAO();
+	$perfilAcessoRotinaDAO 	= new PerfilAcessoRotinaDAO();
+
 	if ( $security->Exist() ) {
 
 		$post = file_get_contents("php://input");
@@ -23,9 +25,7 @@
 				exit;
 			}
 
-			$postData 			= json_decode($post);
-
-			$perfilAcessoRotinaDAO 	= new PerfilAcessoRotinaDAO();	
+			$postData 			= json_decode($post);	
 
 			$nRetId =  $postData[0]->perfilID;
 
@@ -39,7 +39,7 @@
 								$pta_nivel 		= $postData[$i]->nivel;
 								$pta_user_atrib = $security->getUser_id();
 									
-							    $perfilAcessoRotina = new perfilAcessoRotina($pta_rot_nome,$pta_pfa_id,$pta_nivel,$pta_user_atrib);
+							    $perfilAcessoRotina = new PerfilAcessoRotina($pta_rot_nome,$pta_pfa_id,$pta_nivel,$pta_user_atrib);
 
 								if ($perfilAcessoRotinaDAO->Insere($perfilAcessoRotina)) {
 									$lOk 	= true;

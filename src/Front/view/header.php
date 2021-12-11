@@ -242,7 +242,7 @@
                   </div>
                   <div class="col-sm-4">
                     <br/>
-                    <a href="src/model/logout.php" class="btn btn-block btn-danger btn-sm btn-bold">Logout</a>
+                    <a href="src/Model/Logout.php" class="btn btn-block btn-danger btn-sm btn-bold">Logout</a>
                     <br/>
                   </div>
                 </div>

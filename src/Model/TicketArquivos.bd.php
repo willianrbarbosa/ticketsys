@@ -55,7 +55,7 @@
 
 			$cPrefixArq			= $security->getUser_id().'_'.Date('Y-m-d-H-m').'_';
 			$tka_arquivo_nome 	= strtolower($security->sanitizeString((!Empty($postData->tka_arquivo_nome) ? $cPrefixArq.$postData->tka_arquivo_nome : null)));
-			$tka_arquivo_local 	= $security->base_patch.'/assets/importacoes/tickets/';
+			$tka_arquivo_local 	= $security->base_patch.'/src/importacoes/tickets/';
 			$tka_arquivo_tipo 	= pathinfo ( $tka_arquivo_nome, PATHINFO_EXTENSION );;
 			
 			$TicketArquivos 		= new TicketArquivos($tka_id,$tka_tkt_id,$tka_user_id,$tka_data_hora,$tka_arquivo_nome,$tka_arquivo_local,$tka_arquivo_tipo);

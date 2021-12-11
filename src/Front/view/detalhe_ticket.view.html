@@ -119,7 +119,7 @@
 						<div class="col-sm-6" ng-repeat="apmtoPendente in eTicket.apontamento_pendente">
 							<div class="form-group row">
 								<div class="col-sm-2 center-justify">
-									<img class="img-usuario-min col-radius" src="src/img/sys_images{{(apmtoPendente.user_photo ? apmtoPendente.user_photo : 'user_default.png')}}"><br/>
+									<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(apmtoPendente.user_photo ? apmtoPendente.user_photo : 'user_default.png')}}"><br/>
 								</div>
 								<div class="col-sm-10">
 									<label class="bold">{{apmtoPendente.user_nome}}</label><br/>
@@ -326,7 +326,7 @@
 							<div class="form-group row" ng-if="aUserAccess.pta_nivel < 3 || lDisableFields">
 								<div class="col-sm-12">
 									<h5 class="bold">
-										<img class="img-min-grid-lg col-radius" src="src/img/sys_images{{(eTicket.aSolicitante.user_photo ? eTicket.aSolicitante.user_photo : 'user_default.png')}}">
+										<img class="img-min-grid-lg col-radius" src="src/img/sys_images/{{(eTicket.aSolicitante.user_photo ? eTicket.aSolicitante.user_photo : 'user_default.png')}}">
 										{{eTicket.aSolicitante.user_nome}}
 									</h5>
 								</div>
@@ -360,7 +360,7 @@
 								<div class="form-group row" ng-if="aUserAccess.pta_nivel < 3 || lDisableFields">
 									<div class="col-sm-12">
 										<h5 class="bold">
-											<img class="img-min-grid-lg col-radius" src="src/img/sys_images{{(observador.user_photo ? observador.user_photo : 'user_default.png')}}">
+											<img class="img-min-grid-lg col-radius" src="src/img/sys_images/{{(observador.user_photo ? observador.user_photo : 'user_default.png')}}">
 											{{observador.user_nome}}
 										</h5>
 									</div>
@@ -393,7 +393,7 @@
 							<div class="form-group row" ng-if="aUserAccess.pta_nivel < 3 || lDisableFields">
 								<div class="col-sm-12">
 									<h5 class="bold">
-										<img class="img-min-grid-lg col-radius" src="src/img/sys_images{{(eTicket.aResponsavel.user_photo ? eTicket.aResponsavel.user_photo : 'user_default.png')}}">
+										<img class="img-min-grid-lg col-radius" src="src/img/sys_images/{{(eTicket.aResponsavel.user_photo ? eTicket.aResponsavel.user_photo : 'user_default.png')}}">
 										{{eTicket.aResponsavel.user_nome}}
 									</h5>
 								</div>
@@ -418,7 +418,7 @@
 
 					<div class="form-group row">						
 						<div class="col-sm-2 center-justify">
-							<img class="img-usuario-min col-radius" src="src/img/sys_images{{(eTicket.abert_user_photo ? eTicket.abert_user_photo : 'user_default.png')}}"><br/>
+							<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(eTicket.abert_user_photo ? eTicket.abert_user_photo : 'user_default.png')}}"><br/>
 							<label class="ft-primary bold">{{eTicket.abert_user_nome}}</label><br/>
 							<label class="ft-primary bold">{{eTicket.tkt_abertura_data_comp | date:'dd/MM/yyyy HH:mm:ss'}}</label>
 						</div>
@@ -434,7 +434,7 @@
 								<pre ng-bind-html="comentario.descricao_comentario" class="bg-warning word-wrap"></pre>
 							</div>
 							<div class="col-sm-2 center-justify">
-								<img class="img-usuario-min col-radius" src="src/img/sys_images{{(comentario.user_photo ? comentario.user_photo : 'user_default.png')}}"><br/>
+								<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(comentario.user_photo ? comentario.user_photo : 'user_default.png')}}"><br/>
 								<label class="ft-primary bold">{{comentario.user_nome}}</label><br/>
 								<label class="ft-primary bold">{{comentario.tkc_data_hora_comp | date:'dd/MM/yyyy HH:mm:ss'}}</label>
 								<button type="button" class="btn btn-xs btn-danger" title="Excluir Comentário" ng-click="deletaEditaComentarioTicket(comentario);" ng-if="(aUserAccess.pta_nivel >= 3 && !lDisableFields) || (comentario.user_id == aUserData.user_id && !lDisableButtons)"><i class="fa fa-trash"></i> Excluir</button>
@@ -442,7 +442,7 @@
 						</div>
 						<div class="row form-group" ng-if="comentario.tkc_tipo != 'R'">
 							<div class="col-sm-2 center-justify">
-								<img class="img-usuario-min col-radius" src="src/img/sys_images{{(comentario.user_photo ? comentario.user_photo : 'user_default.png')}}"><br/>
+								<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(comentario.user_photo ? comentario.user_photo : 'user_default.png')}}"><br/>
 								<label class="ft-primary bold">{{comentario.user_nome}}</label><br/>
 								<label class="ft-primary bold">{{comentario.tkc_data_hora_comp | date:'dd/MM/yyyy HH:mm:ss'}}</label>
 								<button type="button" class="btn btn-xs btn-danger" title="Excluir Comentário" ng-click="deletaEditaComentarioTicket(comentario);" ng-if="(aUserAccess.pta_nivel >= 3 && !lDisableFields) || (comentario.user_id == aUserData.user_id && !lDisableButtons)"><i class="fa fa-trash"></i> Excluir</button>
@@ -457,7 +457,7 @@
 					<div ng-if="eTicket.tkt_aprovado == 'S'">
 						<div class="row form-group">
 							<div class="col-sm-2 center-justify">
-								<img class="img-usuario-min col-radius" src="src/img/sys_images{{(eTicket.aprov_user_photo ? eTicket.aprov_user_photo : 'user_default.png')}}"><br/>
+								<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(eTicket.aprov_user_photo ? eTicket.aprov_user_photo : 'user_default.png')}}"><br/>
 								<label class="ft-primary bold">{{eTicket.aprov_user_nome}}</label><br/>
 								<label class="ft-primary bold">{{eTicket.tkt_aprovado_data_comp | date:'dd/MM/yyyy HH:mm:ss'}}</label>
 							</div>
@@ -480,7 +480,7 @@
 								</pre>
 							</div>
 							<div class="col-sm-2 center-justify">
-								<img class="img-usuario-min col-radius" src="src/img/sys_images{{(eTicket.enc_user_photo ? eTicket.enc_user_photo : 'user_default.png')}}"><br/>
+								<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(eTicket.enc_user_photo ? eTicket.enc_user_photo : 'user_default.png')}}"><br/>
 								<label class="ft-primary bold">{{eTicket.enc_user_nome}}</label><br/>
 								<label class="ft-primary bold">{{eTicket.tkt_encerrado_data_comp | date:'dd/MM/yyyy HH:mm:ss'}}</label>
 							</div>
@@ -544,7 +544,7 @@
 							<div ng-repeat="arquivo in eTicket.aArquivos" ng-if="eTicket.aArquivos.length">
 								<div class="row form-group">
 									<div class="col-sm-2 center-justify">
-										<img class="img-usuario-min col-radius" src="src/img/sys_images{{(arquivo.user_photo ? arquivo.user_photo : 'user_default.png')}}"><br/>
+										<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(arquivo.user_photo ? arquivo.user_photo : 'user_default.png')}}"><br/>
 										<label class="ft-primary bold">{{arquivo.user_nome}}</label><br/>
 										<label class="ft-primary bold">{{arquivo.tka_data_hora_comp | date:'dd/MM/yyyy HH:mm:ss'}}</label>
 										<button type="button" class="btn btn-xs btn-danger" title="Excluir Arquivo" ng-click="deletaEditaArquivoTicket(arquivo);" ng-if="(aUserAccess.pta_nivel >= 3 && !lDisableFields) || (comentario.user_id == aUserData.user_id && !lDisableButtons)"><i class="fa fa-trash"></i> Excluir</button>
@@ -564,6 +564,7 @@
 												ng-class="{
 													'fa-file-excel-o ft-success': arquivo.tka_arquivo_tipo == 'xls' || arquivo.tka_arquivo_tipo == 'xlsx',
 													'fa-file-word-o ft-primary': arquivo.tka_arquivo_tipo == 'doc' || arquivo.tka_arquivo_tipo == 'docx',
+													'fa-file-powerpoint-o ft-warning': arquivo.tka_arquivo_tipo == 'ppt' || arquivo.tka_arquivo_tipo == 'pptx',
 													'fa-file-text-o ft-gray-dk': arquivo.tka_arquivo_tipo == 'txt',
 													'fa-code ft-purple': arquivo.tka_arquivo_tipo == 'xml',
 													'fa-file-pdf-o ft-danger': arquivo.tka_arquivo_tipo == 'pdf',
@@ -597,7 +598,7 @@
 						  			<tbody>		  				
 										<tr ng-animate="'animate'" ng-repeat="apontamento in eTicket.aApontamentos">
 											<td class="text-nowrap right-justify">
-												<img class="img-usuario-min-grid col-radius" src="src/img/sys_images{{(apontamento.user_photo ? apontamento.user_photo : 'user_default.png')}}">
+												<img class="img-usuario-min-grid col-radius" src="src/img/sys_images/{{(apontamento.user_photo ? apontamento.user_photo : 'user_default.png')}}">
 											</td>
 											<td class="text-nowrap">{{apontamento.user_nome}}</td>
 											<td class="text-nowrap">{{apontamento.tkp_data | date:'dd/MM/yyyy'}}</td>
@@ -619,7 +620,7 @@
 							<div ng-repeat="historico in eTicket.aHistorico" ng-if="eTicket.aHistorico.length">
 								<div class="row form-group">
 									<div class="col-sm-1 center-justify">
-										<img class="img-usuario-min col-radius" src="src/img/sys_images{{(historico.user_photo ? historico.user_photo : 'user_default.png')}}"><br/>
+										<img class="img-usuario-min col-radius" src="src/img/sys_images/{{(historico.user_photo ? historico.user_photo : 'user_default.png')}}"><br/>
 									</div>
 									<div class="col-sm-10">
 										<label class="bold">{{historico.user_nome}} em {{historico.tkh_data_hora_comp | date:'dd/MM/yyyy'}} ás {{historico.tkh_data_hora_comp | date:'HH:mm:ss'}}</label>
