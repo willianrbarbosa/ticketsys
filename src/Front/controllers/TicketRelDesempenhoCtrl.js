@@ -1,5 +1,5 @@
 var app = angular.module("ticket_sys");
-app.controller("TicketRelDesempenhoCtrl", function($scope, $sce, PerfilAcessoRotinaAPIService, TicketAPIService, CategoriaTicketAPIService, OrigemTicketAPIService, PastaTrabalhoAPIService, PrioridadeTicketAPIService, SituacaoTicketAPIService, TipoAtividadeAPIService, UsuarioAPIService, ReportAPIService, $location, $filter, $routeParams, growl, config){
+app.controller("TicketRelDesempenhoCtrl", function($scope, $sce, PerfilAcessoRotinaAPIService, TicketAPIService, CategoriaTicketAPIService, OrigemTicketAPIService, GrupoTrabalhoAPIService, PastaTrabalhoAPIService, PrioridadeTicketAPIService, SituacaoTicketAPIService, TipoAtividadeAPIService, UsuarioAPIService, ReportAPIService, $location, $filter, $routeParams, growl, config){
 
 	$scope.aRelTicketsGerencial = [];
 
@@ -7,6 +7,7 @@ app.controller("TicketRelDesempenhoCtrl", function($scope, $sce, PerfilAcessoRot
 
 	$scope.aCategoriaTicket = [];
 	$scope.aOrigemTicket = [];
+	$scope.aGrupoTrabalho = [];
 	$scope.aPastaTrabalho = [];
 	$scope.aPrioridadeTicket = [];
 	$scope.aSituacaoTicket = [];
@@ -73,12 +74,21 @@ app.controller("TicketRelDesempenhoCtrl", function($scope, $sce, PerfilAcessoRot
 		});
 	};
 
+	$scope.loadGrupoTrabalho  = function() {
+		delete $scope.aGrupoTrabalho ;
+		GrupoTrabalhoAPIService.loadGrupoTrabalho('').then(function(response){
+			$scope.aGrupoTrabalho  = response.data;
+		}).catch(function(response){
+			$scope.alerta("error","Falha ao carregar os GFrupos de Trabalho: " + (response.status ? response.status + " - " : "") + (response.statusText ? response.statusText : response.TypeError));
+		});
+	};
+
 	$scope.loadPastaTrabalho  = function() {
 		delete $scope.aPastaTrabalho ;
 		PastaTrabalhoAPIService.loadPastaTrabalho('').then(function(response){
 			$scope.aPastaTrabalho  = response.data;
 		}).catch(function(response){
-			$scope.alerta("error","Falha ao carregar os PastaTrabalhos: " + (response.status ? response.status + " - " : "") + (response.statusText ? response.statusText : response.TypeError));
+			$scope.alerta("error","Falha ao carregar as Pastas de Trabalhos: " + (response.status ? response.status + " - " : "") + (response.statusText ? response.statusText : response.TypeError));
 		});
 	};
 
@@ -199,12 +209,41 @@ app.controller("TicketRelDesempenhoCtrl", function($scope, $sce, PerfilAcessoRot
 			}
 		},
 	};
+	$scope.cfgGrupoTrabalho = {
+		create: false,
+		valueField: 'grt_id',
+    	searchField: ['grt_id','grt_descricao'],
+		delimiter: config.SelDelimiter,
+		placeholder: 'Selecione um(a) Grupo de Trabalho',
+		maxItems: 1,
+		onInitialize: function(selectize){ 
+			$scope.loadGrupoTrabalho();	
+		},
+		render: {
+			option: function(item, escape) {
+                return '<table class="table" style="margin-bottom: 0px !important;">'
+                    +   '<tr>'
+                    +    '<td class="text-nowrap left-justify" width="10%"><strong>' + escape(item.grt_id) + '</strong></td>'
+                    +    '<td class="text-nowrap left-justify" width="90%">' + (item.grt_descricao ? escape(item.grt_descricao) : '') + '</td> '
+                    +   '</tr>'
+                    + '</table>';
+			},
+			item: function(item, escape){
+				return '<div>'
+					+ '<strong>'
+					+ escape(item.grt_id) + ' | '
+					+ '</strong>'
+					+ (item.grt_descricao ? escape(item.grt_descricao) : '  ')
+					+ '</div>';
+			}
+		},
+	};
 	$scope.cfgPastaTrabalho = {
 		create: false,
 		valueField: 'pst_id',
     	searchField: ['pst_id','pst_descricao','grt_descricao'],
 		delimiter: config.SelDelimiter,
-		placeholder: 'Selecione um(a) PastaTrabalho',
+		placeholder: 'Selecione um(a) Pasta de Trabalho',
 		maxItems: 1,
 		onInitialize: function(selectize){ 
 			$scope.loadPastaTrabalho();	

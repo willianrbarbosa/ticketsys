@@ -4,8 +4,8 @@
 	use PDO;
 	
 	session_start();
-	
-	$security 			= new Classes\Security();	
+
+	$security 			= new Classes\Security();
 	$lSessionExist		= $security->PageSafe();
 
 	//Verifica se existe o cookie de sessão
@@ -21,7 +21,7 @@
 			$cUserToken 	= base64_decode($aRememberMe[2]);
 
 			//verifica se o token salvo no cookie ainda existe para o usuário
-			$aUser 			= $usuarioDAO->buscaByToken($cUserToken);
+			$aUser 			= $UsuarioDAO->buscaByToken($cUserToken);
 			if ( !Empty($aUser) ) {
 				$email 		= $cUserEmail;
 				$passwd 	= $cUserPasswd;			

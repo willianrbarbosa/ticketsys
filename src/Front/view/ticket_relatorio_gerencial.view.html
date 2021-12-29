@@ -77,12 +77,20 @@
 								<selectize name="tipo_rel" id="tipo_rel" config="cfgTipoRel" options="aTipoRel" ng-model="reportFilter.tipo_rel" required></selectize>
 							</div>
 							<div class="col-sm-3">
-								<label>Filtrar por Pasta de Trabalho</label>
-								<selectize id="fil_tkt_pst_id" name="fil_tkt_pst_id" config="cfgPastaTrabalho" options="aPastaTrabalho" ng-model="reportFilter.fil_tkt_pst_id"></selectize>
+								<label>Filtrar por Situação</label>
+								<selectize id="fil_tkt_stt_id" name="fil_tkt_stt_id" config="cfgSituacaoTicket" options="aSituacaoTicket" ng-model="reportFilter.fil_tkt_stt_id"></selectize>
 							</div>
 					    </div>
 						
 						<div class="form-group row">
+							<div class="col-sm-3">
+								<label>Filtrar por Grupo de Trabalho</label>
+								<selectize id="fil_tkt_grt_id" name="fil_tkt_grt_id" config="cfgGrupoTrabalho" options="aGrupoTrabalho" ng-model="reportFilter.fil_tkt_grt_id"></selectize>
+							</div>
+							<div class="col-sm-3">
+								<label>Filtrar por Pasta de Trabalho</label>
+								<selectize id="fil_tkt_pst_id" name="fil_tkt_pst_id" config="cfgPastaTrabalho" options="aPastaTrabalho" ng-model="reportFilter.fil_tkt_pst_id"></selectize>
+							</div>
 							<div class="col-sm-3">
 								<label>Filtrar por Origem</label>
 								<selectize id="fil_tkt_ort_id" name="fil_tkt_ort_id" config="cfgOrigemTicket" options="aOrigemTicket" ng-model="reportFilter.fil_tkt_ort_id"></selectize>
@@ -91,26 +99,22 @@
 								<label>Filtrar por Tipo de Atividade</label>
 								<selectize id="fil_tkt_tav_id" name="fil_tkt_tav_id" config="cfgTipoAtividade" options="aTipoAtividade" ng-model="reportFilter.fil_tkt_tav_id"></selectize>
 							</div>
+					    </div>
+						
+						<div class="form-group row">
+							<div class="col-sm-3">
+								<label>Filtrar por Categoria</label>
+								<selectize id="fil_tkt_cgt_id" name="fil_tkt_cgt_id" config="cfgCategoriaTicket" options="aCategoriaTicket" ng-model="reportFilter.fil_tkt_cgt_id"></selectize>
+							</div>
 							<div class="col-sm-3">
 								<label>Filtrar por Prioridade</label>
 								<selectize id="fil_tkt_prt_id" name="fil_tkt_prt_id" config="cfgPrioridadeTicket" options="aPrioridadeTicket" ng-model="reportFilter.fil_tkt_prt_id"></selectize>
 							</div>
 							<div class="col-sm-3">
-								<label>Filtrar por Categoria</label>
-								<selectize id="fil_tkt_cgt_id" name="fil_tkt_cgt_id" config="cfgCategoriaTicket" options="aCategoriaTicket" ng-model="reportFilter.fil_tkt_cgt_id"></selectize>
-							</div>
-					    </div>
-						
-						<div class="form-group row">
-							<div class="col-sm-4">
-								<label>Filtrar por Situação</label>
-								<selectize id="fil_tkt_stt_id" name="fil_tkt_stt_id" config="cfgSituacaoTicket" options="aSituacaoTicket" ng-model="reportFilter.fil_tkt_stt_id"></selectize>
-							</div>
-							<div class="col-sm-4">
 								<label>Filtrar por Solicitante</label>
 								<selectize id="fil_tkt_solic_id" name="fil_tkt_solic_id" config="cfgUsuario" options="aUsuario" ng-model="reportFilter.fil_tkt_solic_id"></selectize>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<label>Filtrar por Responsável</label>
 								<selectize id="fil_tkt_resp_id" name="fil_tkt_resp_id" config="cfgUserResp" options="aUserResp" ng-model="reportFilter.fil_tkt_resp_id"></selectize>
 							</div>

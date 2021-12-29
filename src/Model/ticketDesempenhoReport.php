@@ -1,20 +1,13 @@
 <?php 
+	namespace TicketSys\Model;
+	require_once "../../vendor/autoload.php";
 	session_start();
-
-	ini_set('max_execution_time', 2400);
-	set_time_limit(2400);
 	
-	ini_set('display_errors',1);
-	ini_set('display_startup_erros',1);
-	error_reporting(E_ALL);
-
-	require_once('class/security.class.php');
-	require_once('class/TicketDAO.class.php');
-	require_once('class/TicketApontamentosDAO.class.php');
-	require_once('class/perfilAcessoRotinaDAO.class.php');
+	use TicketSys\Model\Classes\TicketDAO;
+	use TicketSys\Model\Classes\TicketApontamentosDAO;
+	use TicketSys\Model\Classes\PerfilAcessoRotinaDAO;
 	require_once('session_vars.php');
 
-	$security 				= new Security();
 	$TicketDAO 				= new TicketDAO();
 	$TicketApontamentosDAO 	= new TicketApontamentosDAO();
 	$perfilAcessoRotinaDAO 	= New perfilAcessoRotinaDAO();
@@ -42,6 +35,7 @@
 			// nTipoRel: 3 => Índice EXR por Responsável
 			// nTipoRel: 4 => Índice EXR por Dia
 
+			$nGrupoID		= (isset($postData->fil_tkt_grt_id) ? $postData->fil_tkt_grt_id : null);
 			$nPastaID		= (isset($postData->fil_tkt_pst_id) ? $postData->fil_tkt_pst_id : null);
 			$nSituacaoID	= (isset($postData->fil_tkt_stt_id) ? $postData->fil_tkt_stt_id : null);
 			$nTipoAtvID		= (isset($postData->fil_tkt_tav_id) ? $postData->fil_tkt_tav_id : null);
@@ -86,6 +80,9 @@
 
 			$cWhere 	= " AND tkt_stt_id > 1 "; //Desconsiderar Tickets com aSituação em triagem
 			$cWhere 	.= " AND tkt_encerrado = 'S' "; //Apenas tickets encerrados
+			if ( !Empty($nGrupoID) ) {
+				$cWhere 	.= " AND grt_id = ".$nGrupoID;
+			}
 			if ( !Empty($nPastaID) ) {
 				$cWhere 	.= " AND tkt_pst_id = ".$nPastaID;
 			}

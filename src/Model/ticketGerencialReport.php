@@ -40,6 +40,7 @@
 			// nTipoRel: 8 => Horas apontadas por Responsável
 			// nTipoRel: 9 => Horas apontadas por Dia
 
+			$nGrupoID		= (isset($postData->fil_tkt_grt_id) ? $postData->fil_tkt_grt_id : null);
 			$nPastaID		= (isset($postData->fil_tkt_pst_id) ? $postData->fil_tkt_pst_id : null);
 			$nSituacaoID	= (isset($postData->fil_tkt_stt_id) ? $postData->fil_tkt_stt_id : null);
 			$nTipoAtvID		= (isset($postData->fil_tkt_tav_id) ? $postData->fil_tkt_tav_id : null);
@@ -83,6 +84,9 @@
 			</style>';
 
 			$cWhere 	= " AND tkt_stt_id > 1 "; //Desconsiderar Tickets com aSituação em triagem
+			if ( !Empty($nGrupoID) ) {
+				$cWhere 	.= " AND grt_id = ".$nGrupoID;
+			}
 			if ( !Empty($nPastaID) ) {
 				$cWhere 	.= " AND tkt_pst_id = ".$nPastaID;
 			}
